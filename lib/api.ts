@@ -2,11 +2,11 @@ import axios from "axios";
 import type { NewNote, Note } from "../types/note";
 
 
-interface fetchNotesResponse {
+export interface FetchNotesResponse {
     notes: Note[];
     totalPages: number;
 }
-interface Params {
+export interface Params {
     page: number;
     perPage: number;
     search: string;
@@ -20,7 +20,7 @@ axios.defaults.baseURL = "https://notehub-public.goit.study/api";
 axios.defaults.headers.common['Authorization'] = `Bearer ${myKey}`;
 
 
-export const fetchNotes = async (page: number, search: string, tag?: string): Promise<fetchNotesResponse> => {
+export const fetchNotes = async (page: number, search: string, tag?: string): Promise<FetchNotesResponse> => {
 
     const params: Params = {
         page,
@@ -29,7 +29,7 @@ export const fetchNotes = async (page: number, search: string, tag?: string): Pr
         tag,
     };
 
-    const response = await axios.get<fetchNotesResponse>("/notes", {
+    const response = await axios.get<FetchNotesResponse>("/notes", {
         params,
     })
 
