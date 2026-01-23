@@ -24,18 +24,18 @@ const NotesClient = ({ tag }: Props) => {
 
   const [debouncedSearch] = useDebounce(searchQuery, 500);
 
- const { data, isSuccess } = useQuery({
-    queryKey: ['notes', currentPage, debouncedSearch, tag],
+  const { data, isSuccess } = useQuery({
+    queryKey: ["notes", currentPage, debouncedSearch, tag],
     queryFn: () =>
-        fetchNotes({
-            page: currentPage,
-            perPage: 12,
-            search: debouncedSearch,
-            tag,
-        }),
+      fetchNotes({
+        page: currentPage,
+        perPage: 12,
+        search: debouncedSearch,
+        tag,
+      }),
     placeholderData: keepPreviousData,
     refetchOnMount: false,
-});
+  });
 
   const totalPages = data?.totalPages ?? 0;
 
@@ -62,7 +62,7 @@ const NotesClient = ({ tag }: Props) => {
           <Pagination
             page={currentPage}
             onChange={setCurrentPage}
-            total_page={totalPages}
+            totalPages={totalPages}
           />
         )}
 
